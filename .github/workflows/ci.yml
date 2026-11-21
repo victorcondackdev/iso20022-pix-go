@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ["1.22", "stable"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - name: go vet
+        run: go vet ./...
+      - name: go test
+        run: go test -race -coverprofile=coverage.out -coverpkg=./... ./...
+      - name: coverage
+        run: go tool cover -func=coverage.out | tail -1
+
+  fuzz:
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - { pkg: ./money, fn: FuzzParse }
+          - { pkg: ./money, fn: FuzzFormat }
+          - { pkg: ./ids, fn: FuzzParseID }
+          - { pkg: ./ids, fn: FuzzNewID }
+          - { pkg: ./ids, fn: FuzzClassifyPixKey }
+          - { pkg: ., fn: FuzzDetect }
+          - { pkg: ./pacs008, fn: FuzzRoundTrip }
+          - { pkg: ./pacs008, fn: FuzzBuilderRoundTrip }
+          - { pkg: ./pacs002, fn: FuzzRoundTrip }
+          - { pkg: ./pacs004, fn: FuzzRoundTrip }
+          - { pkg: ./pacs004, fn: FuzzFromPacs008 }
+          - { pkg: ./camt054, fn: FuzzRoundTrip }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      # -fuzzminimizetime is bounded so that minimising large XML inputs
+      # does not consume the whole fuzzing budget.
+      - name: fuzz ${{ matrix.target.pkg }} ${{ matrix.target.fn }}
+        run: go test ${{ matrix.target.pkg }} -run '^$' -fuzz '^${{ matrix.target.fn }}$' -fuzztime 10s -fuzzminimizetime 200x

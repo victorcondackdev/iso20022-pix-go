@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.054.001.08">
+  <BkToCstmrDbtCdtNtfctn>
+    <GrpHdr>
+      <MsgId>M8888888820261121235900000000009</MsgId>
+      <CreDtTm>2026-11-21T23:59:00.000Z</CreDtTm>
+    </GrpHdr>
+    <Ntfctn>
+      <Id>NTF-20261121-0001</Id>
+      <CreDtTm>2026-11-21T23:59:00.000Z</CreDtTm>
+      <Acct>
+        <Id>
+          <Othr>
+            <Id>6543210</Id>
+            <Issr>0001</Issr>
+          </Othr>
+        </Id>
+        <Tp>
+          <Prtry>CACC</Prtry>
+        </Tp>
+      </Acct>
+      <Ntry>
+        <NtryRef>1</NtryRef>
+        <Amt Ccy="BRL">150.75</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts>
+          <Cd>BOOK</Cd>
+        </Sts>
+        <BookgDt>
+          <DtTm>2026-11-21T10:30:01.789Z</DtTm>
+        </BookgDt>
+        <ValDt>
+          <Dt>2026-11-21</Dt>
+        </ValDt>
+        <BkTxCd>
+          <Domn>
+            <Cd>PMNT</Cd>
+            <Fmly>
+              <Cd>RCDT</Cd>
+              <SubFmlyCd>DMCT</SubFmlyCd>
+            </Fmly>
+          </Domn>
+        </BkTxCd>
+        <NtryDtls>
+          <TxDtls>
+            <Refs>
+              <MsgId>M9999999920261121103000000000001</MsgId>
+              <EndToEndId>E99999999202611211030a1B2c3D4e5F</EndToEndId>
+            </Refs>
+            <Amt Ccy="BRL">150.75</Amt>
+            <CdtDbtInd>CRDT</CdtDbtInd>
+            <RmtInf>
+              <Ustrd>Pedido 4521</Ustrd>
+            </RmtInf>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+      <Ntry>
+        <NtryRef>2</NtryRef>
+        <Amt Ccy="BRL">50.00</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts>
+          <Cd>BOOK</Cd>
+        </Sts>
+        <BookgDt>
+          <DtTm>2026-11-21T15:00:00.512Z</DtTm>
+        </BookgDt>
+        <BkTxCd>
+          <Domn>
+            <Cd>PMNT</Cd>
+            <Fmly>
+              <Cd>ICDT</Cd>
+              <SubFmlyCd>DMCT</SubFmlyCd>
+            </Fmly>
+          </Domn>
+        </BkTxCd>
+        <NtryDtls>
+          <TxDtls>
+            <Refs>
+              <MsgId>M8888888820261121150000000000003</MsgId>
+              <EndToEndId>E99999999202611211030a1B2c3D4e5F</EndToEndId>
+            </Refs>
+            <Amt Ccy="BRL">50.00</Amt>
+            <CdtDbtInd>DBIT</CdtDbtInd>
+            <AddtlTxInf>Devolucao D88888888202611211500Zx9Yw8Vu7Ts (MD06)</AddtlTxInf>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+    </Ntfctn>
+  </BkToCstmrDbtCdtNtfctn>
+</Document>
