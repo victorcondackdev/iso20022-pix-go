@@ -39,10 +39,39 @@ func NewDateTime(t time.Time) DateTime {
 // is local time of unspecified zone and is returned as UTC.
 func (d DateTime) Time() (time.Time, error) {
 	s := string(d)
+	if err := checkOffset(s); err != nil {
+		return time.Time{}, err
+	}
 	if t, err := time.Parse(time.RFC3339Nano, s); err == nil {
 		return t, nil
 	}
 	return time.Parse("2006-01-02T15:04:05.999999999", s)
+}
+
+// checkOffset rejects a trailing ±hh:mm offset whose hour is above 24 or
+// whose minute is above 60. Go 1.23 started enforcing these bounds inside
+// time.Parse; checking here gives the same result on every supported Go
+// version.
+func checkOffset(s string) error {
+	if len(s) < 6 {
+		return nil
+	}
+	off := s[len(s)-6:]
+	if (off[0] != '+' && off[0] != '-') || off[3] != ':' {
+		return nil
+	}
+	hh, mm := off[1:3], off[4:6]
+	for _, c := range hh + mm {
+		if c < '0' || c > '9' {
+			return nil
+		}
+	}
+	h := int(hh[0]-'0')*10 + int(hh[1]-'0')
+	m := int(mm[0]-'0')*10 + int(mm[1]-'0')
+	if h > 24 || m > 60 {
+		return &time.ParseError{Layout: time.RFC3339Nano, Value: s, LayoutElem: "Z07:00", ValueElem: off, Message: ": time zone offset out of range"}
+	}
+	return nil
 }
 
 // Date is an ISO 20022 ISODate (YYYY-MM-DD) kept in its lexical form.
