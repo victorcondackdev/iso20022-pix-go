@@ -16,7 +16,7 @@ jobs:
         go: ["1.22", "stable"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version: ${{ matrix.go }}
       - name: gofmt
@@ -49,7 +49,7 @@ jobs:
           - { pkg: ./camt054, fn: FuzzRoundTrip }
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version: stable
       # -fuzzminimizetime is bounded so that minimising large XML inputs
