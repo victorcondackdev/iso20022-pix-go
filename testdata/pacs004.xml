@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.004.001.09">
+  <PmtRtr>
+    <GrpHdr>
+      <MsgId>M8888888820261121150000000000003</MsgId>
+      <CreDtTm>2026-11-21T15:00:00.000Z</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <SttlmInf>
+        <SttlmMtd>CLRG</SttlmMtd>
+      </SttlmInf>
+    </GrpHdr>
+    <TxInf>
+      <RtrId>D88888888202611211500Zx9Yw8Vu7Ts</RtrId>
+      <OrgnlGrpInf>
+        <OrgnlMsgId>M9999999920261121103000000000001</OrgnlMsgId>
+        <OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>
+        <OrgnlCreDtTm>2026-11-21T10:30:01.123Z</OrgnlCreDtTm>
+      </OrgnlGrpInf>
+      <OrgnlEndToEndId>E99999999202611211030a1B2c3D4e5F</OrgnlEndToEndId>
+      <RtrdIntrBkSttlmAmt Ccy="BRL">50.00</RtrdIntrBkSttlmAmt>
+      <ChrgBr>SLEV</ChrgBr>
+      <RtrRsnInf>
+        <Rsn>
+          <Cd>MD06</Cd>
+        </Rsn>
+        <AddtlInf>Devolucao parcial a pedido do recebedor</AddtlInf>
+      </RtrRsnInf>
+    </TxInf>
+  </PmtRtr>
+</Document>

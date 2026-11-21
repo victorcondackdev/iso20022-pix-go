@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Illustrative business message: an AppHdr followed by the Document.
+     The outer wrapper element is transport-specific and is not defined by
+     ISO 20022; check the SPI catalog for the envelope actually required. -->
+<Envelope>
+  <AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.01">
+    <Fr>
+      <FIId>
+        <FinInstnId>
+          <ClrSysMmbId>
+            <MmbId>99999999</MmbId>
+          </ClrSysMmbId>
+        </FinInstnId>
+      </FIId>
+    </Fr>
+    <To>
+      <FIId>
+        <FinInstnId>
+          <ClrSysMmbId>
+            <MmbId>00038166</MmbId>
+          </ClrSysMmbId>
+        </FinInstnId>
+      </FIId>
+    </To>
+    <BizMsgIdr>M9999999920261121103000000000001</BizMsgIdr>
+    <MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+    <CreDt>2026-11-21T10:30:01.123Z</CreDt>
+  </AppHdr>
+  <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+    <FIToFICstmrCdtTrf>
+      <GrpHdr>
+        <MsgId>M9999999920261121103000000000001</MsgId>
+        <CreDtTm>2026-11-21T10:30:01.123Z</CreDtTm>
+        <NbOfTxs>1</NbOfTxs>
+        <SttlmInf>
+          <SttlmMtd>CLRG</SttlmMtd>
+        </SttlmInf>
+      </GrpHdr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>E99999999202611211030a1B2c3D4e5F</EndToEndId>
+        </PmtId>
+        <IntrBkSttlmAmt Ccy="BRL">150.75</IntrBkSttlmAmt>
+        <AccptncDtTm>2026-11-21T10:30:00.000Z</AccptncDtTm>
+        <ChrgBr>SLEV</ChrgBr>
+        <Dbtr>
+          <Nm>Fulano de Tal</Nm>
+          <Id>
+            <PrvtId>
+              <Othr>
+                <Id>52998224725</Id>
+              </Othr>
+            </PrvtId>
+          </Id>
+        </Dbtr>
+        <DbtrAcct>
+          <Id>
+            <Othr>
+              <Id>123456</Id>
+              <Issr>0001</Issr>
+            </Othr>
+          </Id>
+          <Tp>
+            <Prtry>CACC</Prtry>
+          </Tp>
+        </DbtrAcct>
+        <DbtrAgt>
+          <FinInstnId>
+            <ClrSysMmbId>
+              <MmbId>99999999</MmbId>
+            </ClrSysMmbId>
+          </FinInstnId>
+        </DbtrAgt>
+        <CdtrAgt>
+          <FinInstnId>
+            <ClrSysMmbId>
+              <MmbId>88888888</MmbId>
+            </ClrSysMmbId>
+          </FinInstnId>
+        </CdtrAgt>
+        <Cdtr>
+          <Id>
+            <OrgId>
+              <Othr>
+                <Id>11222333000181</Id>
+              </Othr>
+            </OrgId>
+          </Id>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <Othr>
+              <Id>6543210</Id>
+              <Issr>0001</Issr>
+            </Othr>
+          </Id>
+          <Tp>
+            <Prtry>CACC</Prtry>
+          </Tp>
+        </CdtrAcct>
+      </CdtTrfTxInf>
+    </FIToFICstmrCdtTrf>
+  </Document>
+</Envelope>
